@@ -19,3 +19,10 @@ This Image showcase the workflow of AddToCart functionality, when a user click o
 This design is showcasing what happen when user checkout, When he will place order, user will be asked for information like his name, address, email and where to ship a parcel etc, and a POST request will be created on endpoint called /checkout and it will call another POST API call to another Third Part API (Shipengine) to (https://api.shipengine.com/v1/labels) and that taken data from the user will be sent tot this third party API and it will create a label for that particular order and it will also give a receipt describing his order along with other information.
 
 <img src="/documentation/Sytem Architecture Images/Checkout.png" alt="Alt text" width="900"  />
+
+
+# Track Your Order
+
+After successfully checkout, user will be redirected to succes page when they have button called (Track Your Order) and when he clicks on it a GET request will be called on endpoint /track-order which calls GET request of third party API (Shipengine) to (https://api.shipengine.com/v1/labels/[Your_LabelId]/track) and it will return whole information about your order like their OrderStatus, ShippedFrom, ShippedTo, Owner Details, CurrentStatus etc.  
+
+<img src="/documentation/Sytem Architecture Images/Tracking.png" alt="Alt text" width="900"  />
