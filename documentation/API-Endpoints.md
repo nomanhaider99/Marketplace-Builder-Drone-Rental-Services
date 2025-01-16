@@ -1,21 +1,71 @@
-# API Endpoints
+# API Documentation
 
-Endpoint Name: /products
-Method: GET
-Description: It will return all t he products saved in our inventory.
-Response: Product details (id, name, image, price, discount, stock etc). 
+This documentation provides an overview of the API endpoints for managing inventory, orders, and shipments.
 
-Endpoint Name: /orders
-Method: POST
-Description: It will take product that user want to add into a cart and save it to sanity CMS.
-Response: Cart Product details (id, name, image price, discount, quantity etc).
+---
 
-Endpoint Name: /checkout
-Method: POST
-Description: It will take user shippment detials like their name, address and where they want their parcel to be deliver, etc and make a create label in shipengine so one label will be created and from which user can download their shippment receipt.
-Response: Ordered Product Details (ProductName, Quatnity, ShippmentId, LabelId etc).
+## **Endpoints Overview**
 
-Endpoint Name: /track-order
-Method: GET
-Description: It will take labelId from the user and track their order.
-Response: Shippment Details (orderStatus, expectedDeliveryTime, shippedFrom, OwnerDetails etc).
+### 1. **Products Endpoint**
+- **Endpoint Name**: `/products`  
+- **Method**: `GET`  
+- **Description**: Retrieves all products saved in the inventory.  
+- **Response**:  
+  - **Product Details**:  
+    - `id`: Unique identifier  
+    - `name`: Product name  
+    - `image`: Product image URL  
+    - `price`: Product price  
+    - `discount`: Discount percentage  
+    - `stock`: Available stock  
+
+---
+
+### 2. **Orders Endpoint**
+- **Endpoint Name**: `/orders`  
+- **Method**: `POST`  
+- **Description**: Adds a product to the cart and saves it to Sanity CMS.  
+- **Request Body**:  
+  - **Cart Product Details**:  
+    - `id`: Unique product identifier  
+    - `name`: Product name  
+    - `image`: Product image URL  
+    - `price`: Product price  
+    - `discount`: Discount percentage  
+    - `quantity`: Quantity added to the cart  
+
+---
+
+### 3. **Checkout Endpoint**
+- **Endpoint Name**: `/checkout`  
+- **Method**: `POST`  
+- **Description**: Processes user shipment details to create a shipping label via ShipEngine.  
+- **Request Body**:  
+  - **Shipment Details**:  
+    - `name`: User's name  
+    - `address`: Delivery address  
+    - Other relevant shipment details  
+- **Response**:  
+  - **Ordered Product Details**:  
+    - `ProductName`: Name of the product  
+    - `Quantity`: Ordered quantity  
+    - `ShipmentId`: Unique shipment identifier  
+    - `LabelId`: Label ID for the created shipment  
+
+---
+
+### 4. **Track Order Endpoint**
+- **Endpoint Name**: `/track-order`  
+- **Method**: `GET`  
+- **Description**: Tracks an order using the provided `labelId`.  
+- **Request Parameter**:  
+  - `labelId`: Unique identifier for the shipment label  
+- **Response**:  
+  - **Shipment Details**:  
+    - `orderStatus`: Current status of the order  
+    - `expectedDeliveryTime`: Estimated delivery time  
+    - `shippedFrom`: Origin of the shipment  
+    - `OwnerDetails`: Information about the order owner  
+
+---
+
