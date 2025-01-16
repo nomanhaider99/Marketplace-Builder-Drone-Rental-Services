@@ -1,28 +1,50 @@
 # System Architecture
 
-# Fetch Products from Sanity and Display to Frontend
+This document outlines the system's workflow, highlighting how products are fetched, added to the cart, checked out, and tracked.
 
-In this Design you can see that how products transfer from inventory to UI, we will have an API with GET Request called /products which will simply return all the products saved in our sanity CMS.
+---
 
-<img src="/documentation/Sytem Architecture Images/Product-Display.png" alt="Alt text" width="900"  />
+## **1. Fetch Products from Sanity and Display on Frontend**  
+In this design, the flow demonstrates how products are transferred from the inventory to the UI.  
+- A **GET** request is made to the `/products` endpoint.  
+- The endpoint retrieves all products stored in the **Sanity CMS** and displays them on the frontend.  
 
+<img src="/documentation/System Architecture Images/Product-Display.png" alt="Product Display Architecture" width="900" />
 
-# Add Products to Sanity and Show in Cart on Frontend
+---
 
-This Image showcase the workflow of AddToCart functionality, when a user click on button add to cart of any product it will make a post request on the endpoint called /orders and send whole information of a product including id, name, image, price and quantity. and save it to Sanity CMS, that later will use in the checkout.
+## **2. Add Products to Sanity and Show in Cart on Frontend**  
+This diagram illustrates the workflow for the **Add to Cart** functionality.  
+- When a user clicks the "Add to Cart" button on any product:  
+  - A **POST** request is made to the `/orders` endpoint.  
+  - The request includes product details such as `id`, `name`, `image`, `price`, and `quantity`.  
+  - The data is saved in **Sanity CMS**, which will later be used during the checkout process.  
 
-<img src="/documentation/Sytem Architecture Images/AddToCart.png" alt="Alt text" width="900"  />
+<img src="/documentation/System Architecture Images/AddToCart.png" alt="Add to Cart Architecture" width="900" />
 
+---
 
-# Checkout and place order
+## **3. Checkout and Place Order**  
+This design demonstrates the checkout process.  
+- During checkout, the user is prompted to provide personal information such as:  
+  - Name, Address, Email, and Shipping Details.  
+- A **POST** request is made to the `/checkout` endpoint.  
+- This triggers another **POST** request to a third-party API (**ShipEngine**) at `https://api.shipengine.com/v1/labels`.  
+- The third-party API processes the provided data and generates a shipping label for the order.  
+- A receipt is returned, describing the order along with additional information.  
 
-This design is showcasing what happen when user checkout, When he will place order, user will be asked for information like his name, address, email and where to ship a parcel etc, and a POST request will be created on endpoint called /checkout and it will call another POST API call to another Third Part API (Shipengine) to (https://api.shipengine.com/v1/labels) and that taken data from the user will be sent tot this third party API and it will create a label for that particular order and it will also give a receipt describing his order along with other information.
+<img src="/documentation/System Architecture Images/Checkout.png" alt="Checkout Architecture" width="900" />
 
-<img src="/documentation/Sytem Architecture Images/Checkout.png" alt="Alt text" width="900"  />
+---
 
+## **4. Track Your Order**  
+Once the checkout is complete, the user is redirected to a success page featuring a **Track Your Order** button.  
+- When the user clicks this button:  
+  - A **GET** request is made to the `/track-order` endpoint.  
+  - This triggers a **GET** request to the third-party API (**ShipEngine**) at `https://api.shipengine.com/v1/labels/[Your_LabelId]/track`.  
+  - The API response provides detailed tracking information, including:  
+    - `OrderStatus`, `ShippedFrom`, `ShippedTo`, `OwnerDetails`, `CurrentStatus`, etc.  
 
-# Track Your Order
+<img src="/documentation/System Architecture Images/Tracking.png" alt="Order Tracking Architecture" width="900" />
 
-After successfully checkout, user will be redirected to succes page when they have button called (Track Your Order) and when he clicks on it a GET request will be called on endpoint /track-order which calls GET request of third party API (Shipengine) to (https://api.shipengine.com/v1/labels/[Your_LabelId]/track) and it will return whole information about your order like their OrderStatus, ShippedFrom, ShippedTo, Owner Details, CurrentStatus etc.  
-
-<img src="/documentation/Sytem Architecture Images/Tracking.png" alt="Alt text" width="900"  />
+---
