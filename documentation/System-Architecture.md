@@ -9,7 +9,7 @@ In this design, the flow demonstrates how products are transferred from the inve
 - A **GET** request is made to the `/products` endpoint.  
 - The endpoint retrieves all products stored in the **Sanity CMS** and displays them on the frontend.  
 
-<img src="/documentation/System Architecture Images/Product-Display.png" alt="Product Display Architecture" width="900" />
+<img src="/documentation/Workflow Diagrams/Product-Display.png" alt="Product Display Architecture" width="900" />
 
 ---
 
@@ -20,7 +20,7 @@ This diagram illustrates the workflow for the **Add to Cart** functionality.
   - The request includes product details such as `id`, `name`, `image`, `price`, and `quantity`.  
   - The data is saved in **Sanity CMS**, which will later be used during the checkout process.  
 
-<img src="/documentation/System Architecture Images/AddToCart.png" alt="Add to Cart Architecture" width="900" />
+<img src="/documentation/Workflow Diagrams/AddToCart.png" alt="Add to Cart Architecture" width="900" />
 
 ---
 
@@ -33,7 +33,7 @@ This design demonstrates the checkout process.
 - The third-party API processes the provided data and generates a shipping label for the order.  
 - A receipt is returned, describing the order along with additional information.  
 
-<img src="/documentation/System Architecture Images/Checkout.png" alt="Checkout Architecture" width="900" />
+<img src="/documentation/Workflow Diagrams/Checkout.png" alt="Checkout Architecture" width="900" />
 
 ---
 
@@ -45,6 +45,6 @@ Once the checkout is complete, the user is redirected to a success page featurin
   - The API response provides detailed tracking information, including:  
     - `OrderStatus`, `ShippedFrom`, `ShippedTo`, `OwnerDetails`, `CurrentStatus`, etc.  
 
-<img src="/documentation/System Architecture Images/Tracking.png" alt="Order Tracking Architecture" width="900" />
+<img src="/documentation/Workflow Diagrams/Tracking.png" alt="Order Tracking Architecture" width="900" />
 
 ---
