@@ -41,3 +41,8 @@ After successfully checking out, the user will be redirected to a success page w
   - It will return all information about the order, such as `OrderStatus`, `ShippedFrom`, `ShippedTo`, `OwnerDetails`, `CurrentStatus`, etc.  
 
 <img src="/documentation/Application Architecture/Tracking.png" alt="Alt text" width="900" />
+
+
+## Complete Diagram 
+
+Eraser.io Canvas Link: https://app.eraser.io/workspace/NArJHAyTLv3D0MCX2ZZR?origin=share
