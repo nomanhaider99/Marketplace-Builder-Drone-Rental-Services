@@ -6,7 +6,7 @@ const user = {
       {
         name: 'id',
         type: 'string',
-        title: 'User ID',
+        title: 'ID',
         description: 'A unique identifier for the user.',
         validation: (Rule) => Rule.required(),
       },
