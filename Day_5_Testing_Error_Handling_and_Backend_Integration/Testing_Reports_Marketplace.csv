@@ -1,15 +1,12 @@
 Test Case ID,Test Case Description,Test Steps,Expected Result,Actual Result,Status,Severity Level,Assigned To,Remarks
 TC001,Validate product listing page,Open product page > Verify products,Products displayed correctly,Products displayed correctly,Passed,Low,-,No issues found
-TC002,Test API error handling,Disconnect API > Refresh page,Show fallback UI with error message,Error message shown,Passed,Medium,-,Handled gracefully
-TC003,Check cart functionality,Add product to cart > Verify cart contents,Cart updates with added product,Cart updates as expected,Passed,High,-,Works as expected
-TC004,Ensure responsiveness on mobile,Resize browser window > Check layout,Layout adjusts properly to screen size,Responsive layout working as intended,Passed,Medium,-,Test successful
-TC005,Test filter component - pricing high to low and low to high,Apply filter high to low > Apply filter low to high,Products sorted correctly by price,Products sorted as expected,Passed,Low,-,No issues found
-TC006,Test fetching product from API - disconnected internet,Disconnect internet > Attempt to fetch product data,Show error message indicating no internet,Error message displayed correctly,Passed,Medium,-,Handled gracefully
-TC007,Test wishlist functionality,Add product to wishlist > Remove product from wishlist,Products added and removed from wishlist as expected,Wishlist functionality works as intended,Passed,Low,-,Works as expected
-TC008,Test sign-in and sign-up pages,Sign up with valid data > Sign in with same credentials,Sign-up and sign-in work as expected,Sign-in and sign-up functionality passed,Passed,Low,-,Validated successfully
-TC009,Test cart incrementation and decrementation,Add product to cart > Increment quantity > Decrement quantity,Cart updates with correct quantities,Cart functionality works flawlessly,Passed,Medium,-,Cart operations successful
-TC010,Test search functionality with edge cases,Search for valid products > Search with invalid queries,Search returns accurate results or appropriate messages,Search functionality works as expected,Passed,Low,-,Search edge cases handled properly
-TC011,Cart persistence in localStorage,"Add items to cart, refresh page, verify persistence",Cart items persist after page refresh,Passed,Passed,Medium,-,Test successful
-TC012,Responsive Design,"Test layout on desktop, tablet, and mobile devices",UI is responsive and functional across all devices,Passed,Passed,Medium,-,Test successful
-TC013,Browser Compatibility,"Test app on Chrome, Firefox, Edge, Safari",App works seamlessly on all browsers,Passed,Passed,Medium,-,Test successful
-TC014,Performance Testing,Load test with multiple users and heavy data fetching,App maintains performance under heavy load,Passed,Passed,High,-,Test successful
+TC002,API error handling,Disconnect API > Refresh page,Show showing error message with toast notification,Error message shown,Passed,Medium,-,Handled gracefully
+TC003,Check cart functionality,Add product to cart > Verify cart added success,Cart updates with added product,Cart updates as expected,Passed,High,-,Works as expected
+TC004,Ensure responsiveness on mobilephone,Resize browser window > Check UI,Design adjusts properly to screen size,Responsive layout working as intended,Passed,Medium,-,Test successful
+TC005,Test fetching product from API - disconnected internet,Disconnect internet > Attempt to fetch product data,Show error message indicating no internet,Error message displayed correctly,Passed,Medium,-,Handled gracefully
+TC006,Test wishlist functionality,Add product to wishlist > Remove product from wishlist,Products added and removed from wishlist as expected,Wishlist functionality works as intended,Passed,Low,-,Works as expected
+TC007,Test sign-in and sign-up pages,Sign up with valid data > Sign in with same credentials,Sign-up and sign-in work as expected,Sign-in and sign-up functionality passed,Passed,Low,-,Validated successfully
+TC008,Cart persistence in localStorage,"Add items to cart, refresh page, verify persistence",Cart items persist after page refresh,Passed,Passed,Medium,-,Test successful
+TC009,Responsive Design,"Test layout on desktop, tablet, and mobile devices with different resolutions",UI is responsive working on all devices,Passed,Passed,Medium,-,Test successful
+TC010,Browser Compatibility,"Test app on Chrome, Brave, Opera, Edge",App works good on all browsers,Passed,Passed,Medium,-,Test successful
+TC011,Performance Testing,Load test with multiple users and lots of cart items fetching,App keeps its performance,Passed,Passed,High,-,Test successful
