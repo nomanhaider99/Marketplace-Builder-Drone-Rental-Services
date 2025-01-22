@@ -32,4 +32,3 @@ Before setting up the project, make sure you have the following installed:
 - **npm** or **Yarn**
 - **Sanity CLI** (for managing your Sanity CMS content)
 
-### Step By Step Working Process
