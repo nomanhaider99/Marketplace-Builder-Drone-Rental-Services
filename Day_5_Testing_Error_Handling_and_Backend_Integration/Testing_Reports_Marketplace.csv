@@ -4,9 +4,8 @@ TC002,API Error Handling,Disconnect API > Refresh page,Show showing error messag
 TC003,Check Cart Functionality,Add product to cart > Verify cart added success,Cart updates with added product,Cart updates as expected,Passed,High,-,Works as expected
 TC004,Ensure Responsiveness On Mobilephone,Resize browser window > Check UI,Design adjusts properly to screen size,Responsive layout working as intended,Passed,Medium,-,Test successful
 TC005,Test Fetching Product From API - disconnected internet,Disconnect internet > Attempt to fetch product data,Show error message indicating no internet,Error message displayed correctly,Passed,Medium,-,Handled gracefully
-TC006,Test Wishlist Functionality,Add product to wishlist > Remove product from wishlist,Products added and removed from wishlist as expected,Wishlist functionality works as intended,Passed,Low,-,Works as expected
-TC007,Test Sign-in and Sign-up pages,Sign up with valid data > Sign in with correct credentials,Sign-up and sign-in work as expected,Sign-in and sign-up functionality passed,Passed,Low,-,Validated successfully
-TC008,Cart Persistence in LocalStorage,"Add items to cart, refresh page, verify persistence",Cart items persist after page refresh,Passed,Passed,Medium,-,Test successful
-TC009,Responsive Design,"Test layout on desktop, tablet, and mobile devices with different resolutions",UI is responsive working on all devices,Passed,Passed,Medium,-,Test successful
-TC010,Browser Compatibility,"Test app on Chrome, Brave, Opera, Edge",App works good on all browsers,Passed,Passed,Medium,-,Test successful
-TC011,Performance Testing,Load test with multiple users and lots of cart items fetching,App keeps its performance,Passed,Passed,High,-,Test successful
+TC006,Test Sign-in and Sign-up pages,Sign up with valid data > Sign in with correct credentials,Sign-up and sign-in work as expected,Sign-in and sign-up functionality passed,Passed,Low,-,Validated successfully
+TC007,Cart Persistence in LocalStorage,"Add items to cart, refresh page, verify persistence",Cart items persist after page refresh,Passed,Passed,Medium,-,Test successful
+TC008,Responsive Design,"Test layout on desktop, tablet, and mobile devices with different resolutions",UI is responsive working on all devices,Passed,Passed,Medium,-,Test successful
+TC009,Browser Compatibility,"Test app on Chrome, Brave, Opera, Edge",App works good on all browsers,Passed,Passed,Medium,-,Test successful
+TC010,Performance Testing,Load test with multiple users and lots of cart items fetching,App keeps its performance,Passed,Passed,High,-,Test successful
