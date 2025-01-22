@@ -32,9 +32,4 @@ Before setting up the project, make sure you have the following installed:
 - **npm** or **Yarn**
 - **Sanity CLI** (for managing your Sanity CMS content)
 
-### Steps
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/nomanhaider99/Marketplace-Builder-Drone-Rental-Services.git
-   cd marketplace-builder-drone-rental
+### Step By Step Working Process
