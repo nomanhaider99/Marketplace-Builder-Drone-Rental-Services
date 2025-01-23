@@ -6,7 +6,8 @@ interface CheckProps {
     title: string,
     quantity: number,
     size: string,
-    price: number
+    price: number,
+    description: string
 }
 
 const Check: React.FC<CheckProps> = ({
@@ -14,7 +15,8 @@ const Check: React.FC<CheckProps> = ({
     price,
     quantity,
     size,
-    title
+    title,
+    description
 }) => {
   return (
     <div className='w-full flex gap-4'>
@@ -28,11 +30,8 @@ const Check: React.FC<CheckProps> = ({
              />
         </div>
         <div className='flex flex-col gap-2 w-1/2'>
-            <div className='text-[13px]'>{title}</div>
-            <div className='flex flex-col text-[12px] text-textgray'>
-                <div>Quantity {quantity}</div>
-                <div>Size {size}</div>
-            </div>
+            <div className='text-2xl'>{title}</div>
+            <div className='text-md'>{description.slice(0, 30)+'...'}</div>
             <div>₹ {price}</div>
         </div>
     </div>

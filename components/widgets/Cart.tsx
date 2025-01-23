@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import Button from '../ui/Button';
 import CartItem from '../ui/CartItem';
-import { client } from '@/sanity/lib/client';
-import { auth } from '@/auth';
 import { OrderType } from '@/types/order';
 import Link from 'next/link';
 
@@ -14,7 +12,6 @@ const Cart = () => {
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | null | undefined>(null);
 
-  console.log("UserID: ",userId)
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('/api/user');
@@ -26,20 +23,8 @@ const Cart = () => {
         return;
       }
 
-      const query = `*[_type == "order" && userId == $userId] {
-        _id,
-        productId,
-        productName,
-        price,
-        category,
-        imageUrl{
-          asset {
-            url
-          }
-        }
-      }`;
-
-      const orders: OrderType[] = await client.fetch(query, { userId });
+      const res = await fetch('/api/getCart');
+      const orders: OrderType[] = await res.json();
       setData(orders);
 
       const calculatedSubtotal = orders.reduce((acc, item) => acc + item.price, 0);
@@ -49,7 +34,8 @@ const Cart = () => {
     };
 
     fetchData();
-  }, [ userId, setData ]);
+  }, [userId, setData]);
+
 
   if (loading) {
     return <div className='px-10'>Loading...</div>;
@@ -72,10 +58,9 @@ const Cart = () => {
               {data.length > 0 ? data.map((item, index) => (
                 <CartItem
                   category={item.category}
-                  image=""
+                  image={item.imageUrl as any}
                   price={item.price}
-                  quantity={3}
-                  size="L"
+                  id={item._id}
                   title={item.productName}
                   key={index}
                 />

@@ -35,14 +35,10 @@ const Checkout = () => {
         productName,
         price,
         category,
-        imageUrl {
-          asset {
-            url
-          }
-        }
+        "imageUrl": image.asset->url
       }`;
-
-      const orders: OrderType[] = await client.fetch(query, { userId });
+      const res = await fetch('/api/getCart');
+      const orders: OrderType[] = await res.json();
       setData(orders);
 
       const calculatedSubtotal = orders.reduce((acc, item) => acc + item.price, 0);
@@ -53,6 +49,8 @@ const Checkout = () => {
 
     fetchData();
   }, [userId]);
+
+  console.log(data);
 
   const onSubmit = async (formData: FieldValues) => {
     try {
@@ -212,7 +210,8 @@ const Checkout = () => {
           <div className="flex flex-col gap-4 h-[40vw] overflow-y-scroll">
             {data.map((item, index) => (
               <Check
-                image={''}
+                description={item.description}
+                image={item.imageUrl as any}
                 price={item.price}
                 quantity={2}
                 size="L"

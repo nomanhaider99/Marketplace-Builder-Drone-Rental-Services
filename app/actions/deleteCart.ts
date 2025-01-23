@@ -1,9 +1,9 @@
-export const deleteCart = async (productName: string) => {
+export const deleteCart = async (id: string) => {
     try {
         const response = await fetch('/api/delete', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ productName }),
+            body: JSON.stringify({ id }),
         });
         if (!response.ok) {
             const errorData = await response.json();

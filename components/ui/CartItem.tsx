@@ -3,25 +3,33 @@
 import { deleteCart } from '@/app/actions/deleteCart';
 import Image from 'next/image';
 import React from 'react';
+import toast from 'react-hot-toast';
 import { MdDeleteOutline } from 'react-icons/md';
 
 interface CartItemProps {
+    id: string;
     image: string;
     title: string;
     category: string;
-    size: string;
-    quantity: number;
     price: number;
 }
 
 const CartItem: React.FC<CartItemProps> = ({
+    id,
     category,
     image,
     price,
-    quantity,
-    size,
     title,
 }) => {
+    const deleteItem = async () => {
+        await deleteCart(id)
+        .then(() => {
+            toast.success('Item removed from cart');
+        })
+        .catch((error) => {
+            toast.error(error.message);
+        });
+    }
     return (
         <div className="md:w-[617.33px] w-full grid grid-cols-1 md:grid-cols-2 gap-6 py-4 border-b-[0.5px] border-zinc-400">
             {/* Image Section */}
@@ -48,7 +56,7 @@ const CartItem: React.FC<CartItemProps> = ({
                             size={24}
                             color="#000"
                             className='cursor-pointer'
-                            onClick={() => deleteCart(title)}
+                            onClick={deleteItem}
                         />
                     </div>
                 </div>

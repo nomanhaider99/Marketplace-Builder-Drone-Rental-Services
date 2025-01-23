@@ -17,27 +17,28 @@ interface ShoeProps {
     price: number;
     id: string;
     status: string
+    description: string;
 }
 
-const Product: React.FC<ShoeProps> = ({ category, image, price, title, id, status }) => {
+const Product: React.FC<ShoeProps> = ({ category, image, price, title, id, status, description }) => {
     const { handleSubmit } = useForm();
     const router = useRouter();
 
     const submitAddToCart = async () => {
         try {
-            const session = await getSession();
+            const session = await fetch('/api/user').then((res) => res.json());
 
             if (!session?.user?.name) {
                 toast.error('User Not Found');
                 router.push('/login')
             } else {
                 const data = {
-                    userId: session?.user?.name,
-                    productId: id,
+                    userId: session.user.name,
                     productName: title,
-                    price: price,
-                    category: category,
-                    imageUrl: image,
+                    description,
+                    price,
+                    category,
+                    image,
                 };
                 await addToCart(data);
                 toast.success('Product Added Into Cart!');

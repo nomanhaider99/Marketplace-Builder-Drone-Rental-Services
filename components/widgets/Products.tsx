@@ -40,6 +40,7 @@ const Products = () => {
               id={item._id}
               status={item.status}
               key={index}
+              description={item.description}
             />
           ))}
         </div>

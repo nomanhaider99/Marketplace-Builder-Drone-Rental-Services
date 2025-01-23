@@ -1,4 +1,5 @@
 export interface OrderType {
+    _id: string,
     userId: string,
     productName: string,
     colors: string[],
