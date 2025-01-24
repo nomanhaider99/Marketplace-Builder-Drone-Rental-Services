@@ -1,67 +1,31 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useCartStore } from '@/components/store/cart';
 import Button from '../ui/Button';
 import CartItem from '../ui/CartItem';
-import { OrderType } from '@/types/order';
 import Link from 'next/link';
 
 const Cart = () => {
-  const [data, setData] = useState<OrderType[]>([]);
-  const [subtotal, setSubtotal] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [userId, setUserId] = useState<string | null | undefined>(null);
-  console.log(`Data: `,data);
+  const { userId, cart, subtotal, loading, fetchCartData } = useCartStore();
 
+  // Fetch cart data on component mount
   useEffect(() => {
-    const fetchUserId = async () => {
-      const response = await fetch('/api/user');
-      const data = await response.json();
-      setUserId(data.user?.name || null);
-    };
-  
-    fetchUserId();
-  }, []);
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [userResponse, cartResponse] = await Promise.all([
-          fetch('/api/user'),
-          fetch('/api/getCart')
-        ]);
-        const userData = await userResponse.json();
-        const cartData: OrderType[] = await cartResponse.json();
-        
-        const userId = userData.user?.name || null;
-        setUserId(userId);
-  
-        if (userId) {
-          setData(cartData);
-          const calculatedSubtotal = cartData.reduce((acc, item) => acc + item.price, 0);
-          setSubtotal(calculatedSubtotal);
-        }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-  
+    fetchCartData();
+  }, [fetchCartData]);
 
   if (loading) {
-    return <div className='px-10'>Loading...</div>;
+    return <div className="px-10">Loading...</div>;
   }
 
   if (!userId) {
-    return <div className='px-10'>User not authenticated</div>;
+    return <div className="px-10">User not authenticated</div>;
   }
 
   return (
     <div className="w-full md:px-10 px-4 py-10 flex justify-center items-center">
       <div className="flex flex-col md:flex-row gap-5 text-primarycolor">
+        {/* Bag Section */}
         <div className="md:w-[70%] w-full flex flex-col gap-4">
           <div className="md:w-[717.33px] w-full p-2 bg-lightgray flex flex-col gap-2">
             <div className="text-[13px] leading-[14px] font-medium">Free Delivery</div>
@@ -69,19 +33,25 @@ const Cart = () => {
           <div className="flex flex-col gap-2">
             <div className="text-[22px] leading-[33px] font-medium">Bag</div>
             <div className="flex flex-col gap-2">
-              {data.length > 0 ? data.map((item, index) => (
-                <CartItem
-                  category={item.category}
-                  image={item.imageUrl as any}
-                  price={item.price}
-                  id={item._id}
-                  title={item.productName}
-                  key={index}
-                />
-              )) : <div>No, Items found in cart</div>}
+              {cart.length > 0 ? (
+                cart.map((item, index) => (
+                  <CartItem
+                    category={item.category}
+                    image={item.imageUrl as any}
+                    price={item.price}
+                    id={item._id}
+                    title={item.productName}
+                    key={index}
+                  />
+                ))
+              ) : (
+                <div>No items found in cart</div>
+              )}
             </div>
           </div>
         </div>
+
+        {/* Summary Section */}
         <div className="md:w-[30%] w-full flex flex-col gap-8">
           <div className="text-[21px] font-medium">Summary</div>
           <div className="flex flex-col gap-4">

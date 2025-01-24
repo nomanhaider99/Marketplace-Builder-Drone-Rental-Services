@@ -24,19 +24,19 @@ const Checkout = () => {
           fetch('/api/user'),
           fetch('/api/getCart'),
         ]);
-  
+
         const userData = await userResponse.json();
         const userId = userData.user?.name || null;
         setUserId(userId);
-  
+
         if (userId) {
           const cartData: OrderType[] = await cartResponse.json();
           setData(cartData);
-  
+
           const calculatedSubtotal = cartData.reduce((acc, item) => acc + item.price, 0);
           setSubtotal(calculatedSubtotal);
         } else {
-          setData([]); 
+          setData([]);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -45,10 +45,10 @@ const Checkout = () => {
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, []);
-  
+
 
 
   const onSubmit = async (formData: FieldValues) => {
