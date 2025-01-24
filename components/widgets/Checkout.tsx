@@ -29,14 +29,6 @@ const Checkout = () => {
         return;
       }
 
-      const query = `*[_type == "order" && userId == $userId] {
-        _id,
-        productId,
-        productName,
-        price,
-        category,
-        "imageUrl": image.asset->url
-      }`;
       const res = await fetch('/api/getCart');
       const orders: OrderType[] = await res.json();
       setData(orders);
@@ -48,9 +40,8 @@ const Checkout = () => {
     };
 
     fetchData();
-  }, []);
+  }, [ userId ]);
 
-  console.log(data);
 
   const onSubmit = async (formData: FieldValues) => {
     try {

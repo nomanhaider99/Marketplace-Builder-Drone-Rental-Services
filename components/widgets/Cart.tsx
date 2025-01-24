@@ -11,31 +11,37 @@ const Cart = () => {
   const [subtotal, setSubtotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState<string | null | undefined>(null);
+  console.log(`Data: `,data);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUserId = async () => {
       const response = await fetch('/api/user');
       const data = await response.json();
       setUserId(data.user?.name || null);
-
-      if (!userId) {
-        setLoading(false);
-        return;
-      }
-
+    };
+  
+    fetchUserId();
+  }, []);
+  
+  useEffect(() => {
+    if (!userId) {
+      setLoading(false);
+      return;
+    }
+  
+    const fetchCart = async () => {
       const res = await fetch('/api/getCart');
       const orders: OrderType[] = await res.json();
       setData(orders);
-
+  
       const calculatedSubtotal = orders.reduce((acc, item) => acc + item.price, 0);
       setSubtotal(calculatedSubtotal);
-
+  
       setLoading(false);
     };
-
-    fetchData();
-  }, []);
-
+  
+    fetchCart();
+  }, [userId]);
 
   if (loading) {
     return <div className='px-10'>Loading...</div>;
