@@ -48,7 +48,7 @@ const Checkout = () => {
     };
 
     fetchData();
-  }, [userId]);
+  }, []);
 
   console.log(data);
 
