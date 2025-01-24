@@ -24,24 +24,32 @@ const Cart = () => {
   }, []);
   
   useEffect(() => {
-    if (!userId) {
-      setLoading(false);
-      return;
-    }
+    const fetchData = async () => {
+      try {
+        const [userResponse, cartResponse] = await Promise.all([
+          fetch('/api/user'),
+          fetch('/api/getCart')
+        ]);
+        const userData = await userResponse.json();
+        const cartData: OrderType[] = await cartResponse.json();
+        
+        const userId = userData.user?.name || null;
+        setUserId(userId);
   
-    const fetchCart = async () => {
-      const res = await fetch('/api/getCart');
-      const orders: OrderType[] = await res.json();
-      setData(orders);
-  
-      const calculatedSubtotal = orders.reduce((acc, item) => acc + item.price, 0);
-      setSubtotal(calculatedSubtotal);
-  
-      setLoading(false);
+        if (userId) {
+          setData(cartData);
+          const calculatedSubtotal = cartData.reduce((acc, item) => acc + item.price, 0);
+          setSubtotal(calculatedSubtotal);
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     };
+    fetchData();
+  }, []);
   
-    fetchCart();
-  }, [userId]);
 
   if (loading) {
     return <div className='px-10'>Loading...</div>;

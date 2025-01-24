@@ -6,7 +6,6 @@ import { FiPackage } from 'react-icons/fi';
 import Check from '../ui/Check';
 import Button from '../ui/Button';
 import { OrderType } from '@/types/order';
-import { client } from '@/sanity/lib/client';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
@@ -15,29 +14,41 @@ const Checkout = () => {
   const [data, setData] = useState<OrderType[]>([]);
   const [subtotal, setSubtotal] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [userId, setUserId] = useState<string | null | undefined>(null);
+  const [userId, setUserId] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('/api/user');
-      const userData = await response.json();
-      setUserId(userData.user?.name || null);
-
-      if (!userId) return;
-
-      const res = await fetch('/api/getCart');
-      const orders: OrderType[] = await res.json();
-      setData(orders);
-
-      const calculatedSubtotal = orders.reduce((acc, item) => acc + item.price, 0);
-      setSubtotal(calculatedSubtotal);
-
-      setLoading(false);
+      try {
+        const [userResponse, cartResponse] = await Promise.all([
+          fetch('/api/user'),
+          fetch('/api/getCart'),
+        ]);
+  
+        const userData = await userResponse.json();
+        const userId = userData.user?.name || null;
+        setUserId(userId);
+  
+        if (userId) {
+          const cartData: OrderType[] = await cartResponse.json();
+          setData(cartData);
+  
+          const calculatedSubtotal = cartData.reduce((acc, item) => acc + item.price, 0);
+          setSubtotal(calculatedSubtotal);
+        } else {
+          setData([]); 
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setData([]);
+      } finally {
+        setLoading(false);
+      }
     };
-
+  
     fetchData();
-  }, [ userId ]);
+  }, []);
+  
 
 
   const onSubmit = async (formData: FieldValues) => {
