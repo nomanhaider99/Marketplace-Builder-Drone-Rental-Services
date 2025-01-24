@@ -24,10 +24,7 @@ const Checkout = () => {
       const userData = await response.json();
       setUserId(userData.user?.name || null);
 
-      if (!userId) {
-        setLoading(false);
-        return;
-      }
+      if (!userId) return;
 
       const res = await fetch('/api/getCart');
       const orders: OrderType[] = await res.json();
