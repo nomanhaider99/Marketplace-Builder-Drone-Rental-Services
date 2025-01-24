@@ -40,6 +40,7 @@ const Gear = () => {
               <Product
                 category={item.category}
                 id={item._id}
+                description={item.description}
                 image={item.imageUrl as any}
                 price={item.price}
                 title={item.productName}

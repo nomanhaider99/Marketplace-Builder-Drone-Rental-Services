@@ -1,7 +1,8 @@
 import { auth } from "@/auth";
 import { client } from "@/sanity/lib/client";
-import { OrderType } from "@/types/order";
 import { NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
     try {
@@ -18,10 +19,10 @@ export async function GET(request: Request) {
         }
         `;
 
-        const orders: OrderType[] = await client.fetch(query, { userId });
+        const orders = await client.fetch(query, { userId });
 
         return NextResponse.json(orders)
-    } catch (error) {
-
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
