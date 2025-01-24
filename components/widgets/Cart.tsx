@@ -34,7 +34,7 @@ const Cart = () => {
     };
 
     fetchData();
-  }, [userId, setData]);
+  }, []);
 
 
   if (loading) {
