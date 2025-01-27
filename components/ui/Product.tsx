@@ -41,6 +41,7 @@ const Product: React.FC<ShoeProps> = ({ category, image, price, title, id, statu
                 <Button
                     text="View Details"
                     type="button"
+                    className='w-full'
                 />
             </Link>
         </div>
