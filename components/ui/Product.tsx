@@ -53,6 +53,7 @@ const Product: React.FC<ShoeProps> = ({ category, image, price, title, id, statu
     };
 
     return (
+        <Link href={`/products/${title}`}>
             <div className="flex flex-col gap-2 w-[300px] h-[533px]">
                 {/* Image */}
                 <div>
@@ -73,14 +74,13 @@ const Product: React.FC<ShoeProps> = ({ category, image, price, title, id, statu
                     </div>
                     <div className="text-[15px] leading-[24px] text-textgray">{category}</div>
                 </div>
-                <Link href={`/products/${title}`}>
-                    <Button
-                        text="View Detials"
-                        type="button"
-                        className='w-full'
-                    />
-                </Link>
+                <Button
+                    text="Add to Cart"
+                    type="button"
+                    onClick={handleSubmit(submitAddToCart)}
+                />
             </div>
+        </Link>
     );
 };
 
