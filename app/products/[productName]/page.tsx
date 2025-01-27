@@ -4,7 +4,7 @@ import React from 'react';
 
 const ProductPage = async ({ params }: { params: { productName: string } }) => {
     console.log(params.productName)
-    const res = await fetch(`http://localhost:3000/api/products/${params.productName}`);
+    const res = await fetch(`/api/products/${params.productName}`);
 
     if (!res.ok) {
         const errorData = await res.json();
