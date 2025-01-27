@@ -15,7 +15,8 @@ export async function GET(request: Request) {
             description,
             price,
             category,
-            "imageUrl": image.asset->url
+            "imageUrl": image.asset->url,
+            quantity
         }
         `;
 

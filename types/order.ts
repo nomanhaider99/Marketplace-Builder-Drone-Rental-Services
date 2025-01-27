@@ -14,5 +14,6 @@ export interface OrderType {
     description: string,
     category: string,
     price: number,
-    inventory: number
+    inventory: number,
+    quantity: number
 }

@@ -9,7 +9,6 @@ import Link from 'next/link';
 const Cart = () => {
   const { userId, cart, subtotal, loading, fetchCartData } = useCartStore();
 
-  // Fetch cart data on component mount
   useEffect(() => {
     fetchCartData();
   }, [fetchCartData]);
@@ -41,6 +40,7 @@ const Cart = () => {
                     price={item.price}
                     id={item._id}
                     title={item.productName}
+                    quantity={item.quantity}
                     key={index}
                   />
                 ))

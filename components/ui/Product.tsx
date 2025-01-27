@@ -9,6 +9,7 @@ import { getSession } from 'next-auth/react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { useCartStore } from '../store/cart';
 
 interface ShoeProps {
     image: string;
@@ -22,6 +23,7 @@ interface ShoeProps {
 
 const Product: React.FC<ShoeProps> = ({ category, image, price, title, id, status, description }) => {
     const { handleSubmit } = useForm();
+    const { addToCart } = useCartStore();
     const router = useRouter();
 
     const submitAddToCart = async () => {
@@ -51,7 +53,6 @@ const Product: React.FC<ShoeProps> = ({ category, image, price, title, id, statu
     };
 
     return (
-        <Link href={`/products/${title}`}>
             <div className="flex flex-col gap-2 w-[300px] h-[533px]">
                 {/* Image */}
                 <div>
@@ -72,13 +73,14 @@ const Product: React.FC<ShoeProps> = ({ category, image, price, title, id, statu
                     </div>
                     <div className="text-[15px] leading-[24px] text-textgray">{category}</div>
                 </div>
-                <Button
-                    text="Add to Cart"
-                    type="button"
-                    onClick={handleSubmit(submitAddToCart)}
-                />
+                <Link href={`/products/${title}`}>
+                    <Button
+                        text="View Detials"
+                        type="button"
+                        className='w-full'
+                    />
+                </Link>
             </div>
-        </Link>
     );
 };
 

@@ -24,6 +24,7 @@ const ProductPage = async ({ params }: { params: { productName: string } }) => {
                 price={data.price}
                 inventory={data.inventory}
                 colors={data.colors}
+                category={data.category}
             />
         </div>
     );

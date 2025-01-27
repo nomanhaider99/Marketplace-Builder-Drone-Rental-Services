@@ -10,6 +10,7 @@ export async function POST(request: Request) {
             price,
             category,
             image,
+            quantity
         } = await request.json();
 
         const imageBuffer = await fetchImageBuffer(image);
@@ -31,6 +32,7 @@ export async function POST(request: Request) {
             price,
             description,
             category,
+            quantity,
             image: {
                 _type: 'image',
                 asset: {

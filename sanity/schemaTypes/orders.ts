@@ -58,5 +58,10 @@ export const ordersSchema    = {
             type: 'text',
             validation: (Rule: Rule) => Rule.optional(),
         },
+        {
+            name: 'quantity',
+            title: 'Quantity',
+            type: 'number',
+        }
     ],
 }

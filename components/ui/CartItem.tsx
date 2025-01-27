@@ -12,6 +12,7 @@ interface CartItemProps {
     title: string;
     category: string;
     price: number;
+    quantity: number;
 }
 
 const CartItem: React.FC<CartItemProps> = ({
@@ -20,6 +21,7 @@ const CartItem: React.FC<CartItemProps> = ({
     image,
     price,
     title,
+    quantity
 }) => {
     const deleteItem = async () => {
         await deleteCart(id)
@@ -58,6 +60,7 @@ const CartItem: React.FC<CartItemProps> = ({
                             className='cursor-pointer'
                             onClick={deleteItem}
                         />
+                        <div className=''>Quantity: {quantity}</div>
                     </div>
                 </div>
 
