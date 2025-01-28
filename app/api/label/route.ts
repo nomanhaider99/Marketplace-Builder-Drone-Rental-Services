@@ -10,7 +10,6 @@ export async function POST(request: Request) {
             state,
             country,
             phoneNumber,
-            // packages TODO: to add packages as well
         } = await request.json();
 
         if (!fullName || !address || !postalCode || !locality || !state || !country || !phoneNumber) {
